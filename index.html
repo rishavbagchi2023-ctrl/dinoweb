@@ -108,19 +108,20 @@
 
     /* Mobile full-screen nav */
     .mobile-nav-panel {
-      position: fixed;
-      inset: 0;
-      background: white;
-      z-index: 60;
-      transform: translateX(100%);
-      transition: transform 260ms ease;
-    }
-    .mobile-nav-panel.open { transform: translateX(0%); }
-
-    /* Responsive adjustments */
-    @media (min-width: 768px) {
-      .hero { min-height: 70vh; }
-    }
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  min-width: 280px;
+  height: 100vh;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+  overflow-y: auto;
+  isolation: isolate;
+}
   </style>
 </head>
 <body class="antialiased">
