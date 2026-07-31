@@ -107,20 +107,57 @@
     .red-underline { height:3px; width:56px; background:var(--red); border-radius:3px; }
 
     /* Mobile full-screen nav */
-    .mobile-nav-panel {
+    /* Mobile Navigation */
+.mobile-nav-panel {
   position: fixed;
   top: 0;
   right: 0;
   width: 25%;
   min-width: 280px;
+  max-width: 400px;
   height: 100vh;
-  background-color: #ffffff !important;
+
+  background: #ffffff !important;
   opacity: 1 !important;
-  z-index: 40;
+
+  z-index: 10000;
+
   transform: translateX(100%);
   transition: transform 260ms ease;
+
   overflow-y: auto;
   isolation: isolate;
+
+  pointer-events: none;
+}
+
+.mobile-nav-panel.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Keep menu contents above background */
+.mobile-nav-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile menu links */
+.mobile-nav-panel a {
+  color: #111111;
+}
+
+.mobile-nav-panel a:hover {
+  color: #C8102E;
+}
+
+/* Phone size */
+@media (max-width: 767px) {
+  .mobile-nav-panel {
+    width: 75%;
+    min-width: 0;
+    max-width: none;
+  }
 }
   </style>
 </head>
