@@ -5,1216 +5,982 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Diagno Support — Professional Diagnostic Solutions</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root{
-      --red: #C8102E;
-      --dark: #111111;
-      --charcoal: #1C1C1C;
-      --white: #FFFFFF;
-      --light-gray: #F5F5F5;
-      --medium-gray: #666666;
-      --borders: #E5E5E5;
-      --max-width: 1200px;
+      --red:#C8102E;
+      --dark:#111111;
+      --charcoal:#1C1C1C;
+      --white:#FFFFFF;
+      --light-gray:#F5F5F5;
+      --medium-gray:#666666;
+      --borders:#E5E5E5;
+      --max-width:1200px;
     }
 
-    html,body { height: 100%; }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: var(--light-gray);
-      color: var(--charcoal);
+      background:var(--light-gray);
+      color:var(--charcoal);
     }
 
-    /* Header */
-    header.site-header {
-      backdrop-filter: blur(4px);
-      background: rgba(255,255,255,0.98);
-      border-bottom: 1px solid var(--borders);
+    header.site-header{
+      backdrop-filter:blur(4px);
+      background:rgba(255,255,255,.98);
+      border-bottom:1px solid var(--borders);
     }
-    .logo-img { height: 80px; width: auto; object-fit: contain; }
+    .logo-img{height:80px;width:auto;object-fit:contain}
 
-    /* Red square hamburger */
-    .hamburger-btn {
-      background: var(--red);
-      width: 44px;
-      height: 38px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      color: white;
-      border: none;
+    .hamburger-btn{
+      background:var(--red);width:44px;height:38px;display:inline-flex;
+      align-items:center;justify-content:center;border-radius:6px;color:#fff;border:none
     }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
+    /* HERO — intentionally preserved in the same visual language */
+    .hero{
+      position:relative;background-size:cover;background-position:center;
+      min-height:60vh;display:flex;align-items:center
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(17,17,17,0.55) 0%, rgba(17,17,17,0.55) 100%);
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(17,17,17,.55),rgba(17,17,17,.55))
     }
-    .hero-content { position: relative; z-index: 2; }
+    .hero-content{position:relative;z-index:2}
 
-    /* Expertise card */
-    .expert-card {
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 12px;
-      background: white;
+    .anim-ease{transition:all 260ms cubic-bezier(.22,.9,.34,1)}
+
+    /* =========================
+       ABOUT — editorial / premium
+       ========================= */
+    .about-section{
+      position:relative;
+      overflow:hidden;
+      background:#fff;
     }
-    .expert-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(17,17,17,0.06);
+
+    .about-section::before{
+      content:"01";
+      position:absolute;
+      right:-20px;
+      top:-65px;
+      font-size:220px;
+      line-height:1;
+      font-weight:800;
+      color:#f7f7f7;
+      letter-spacing:-.08em;
+      pointer-events:none;
+    }
+
+    .about-visual{
+      position:relative;
+      min-height:500px;
+    }
+
+    .about-photo-frame{
+      position:absolute;
+      left:0;
+      top:34px;
+      width:78%;
+      height:410px;
+      overflow:hidden;
+      background:#eee;
+      border-radius:4px;
+      box-shadow:0 25px 60px rgba(17,17,17,.12);
+    }
+
+    .about-photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .about-accent{
+      position:absolute;
+      right:0;
+      top:0;
+      width:38%;
+      height:260px;
+      background:var(--red);
+      clip-path:polygon(20% 0,100% 0,100% 100%,0 100%);
+      opacity:.96;
+    }
+
+    .about-outline{
+      position:absolute;
+      left:10%;
+      bottom:18px;
+      width:72%;
+      height:150px;
+      border:1px solid rgba(17,17,17,.18);
+      transform:translate(30px,18px);
+      pointer-events:none;
+    }
+
+    .about-stat{
+      position:absolute;
+      right:0;
+      bottom:25px;
+      width:210px;
+      padding:24px;
+      background:#111;
+      color:#fff;
+      z-index:3;
+      box-shadow:0 20px 45px rgba(17,17,17,.2);
+    }
+
+    .about-stat .big{
+      display:block;
+      font-size:42px;
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.05em;
+    }
+
+    .about-copy{
+      position:relative;
+      z-index:2;
+      padding-left:5%;
+    }
+
+    .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--red);
+    }
+
+    .section-kicker::before{
+      content:"";
+      width:34px;
+      height:2px;
+      background:var(--red);
+    }
+
+    .about-title{
+      font-size:clamp(2.2rem,4vw,4.2rem);
+      line-height:1.03;
+      letter-spacing:-.055em;
+      font-weight:800;
+      max-width:650px;
+    }
+
+    .about-lead{
+      font-size:1.08rem;
+      line-height:1.8;
+      color:#555;
+      max-width:620px;
+    }
+
+    .about-pill-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1px;
+      background:#ddd;
+      border:1px solid #ddd;
+    }
+
+    .about-pill{
+      background:#fff;
+      padding:20px;
+      min-height:125px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .about-pill::after{
+      content:"";
+      position:absolute;
+      width:42px;height:42px;
+      right:-18px;bottom:-18px;
+      border:1px solid var(--red);
+      transform:rotate(45deg);
+    }
+
+    .about-pill .num{
+      font-size:11px;
+      color:var(--red);
+      font-weight:800;
+      letter-spacing:.12em;
+    }
+
+    /* =========================
+       EXPERTISE — visual cards
+       ========================= */
+    .expertise-section{
+      position:relative;
+      overflow:hidden;
+      background:#f5f5f5;
+    }
+
+    .expertise-section::before{
+      content:"02";
+      position:absolute;
+      left:-10px;
+      top:-70px;
+      font-size:230px;
+      line-height:1;
+      font-weight:800;
+      color:#eaeaea;
+      letter-spacing:-.09em;
+      pointer-events:none;
+    }
+
+    .expertise-header{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:40px;
+    }
+
+    .expertise-title{
+      font-size:clamp(2.2rem,4vw,4rem);
+      line-height:1;
+      letter-spacing:-.055em;
+      font-weight:800;
+    }
+
+    .expertise-intro{
+      max-width:470px;
+      color:#666;
+      line-height:1.7;
+    }
+
+    .expertise-grid{
+      position:relative;
+      z-index:2;
+      margin-top:55px;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+    }
+
+    .expertise-card{
+      position:relative;
+      min-height:300px;
+      background:#fff;
+      overflow:hidden;
+      border:1px solid #ddd;
+      box-shadow:0 8px 30px rgba(17,17,17,.035);
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .expertise-card:nth-child(1),
+    .expertise-card:nth-child(4){grid-column:span 7}
+    .expertise-card:nth-child(2),
+    .expertise-card:nth-child(3),
+    .expertise-card:nth-child(5),
+    .expertise-card:nth-child(6){grid-column:span 5}
+
+    .expertise-card:hover{
+      transform:translateY(-7px);
+      box-shadow:0 25px 55px rgba(17,17,17,.11);
+    }
+
+    .expertise-card::before{
+      content:"";
+      position:absolute;
+      width:145px;height:145px;
+      right:-48px;top:-48px;
+      border:1px solid rgba(200,16,46,.25);
+      transform:rotate(45deg);
+    }
+
+    .expertise-card::after{
+      content:"";
+      position:absolute;
+      width:90px;height:90px;
+      right:-40px;top:-40px;
+      background:rgba(200,16,46,.055);
+      transform:rotate(45deg);
+    }
+
+    .expert-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      position:relative;
+      z-index:2;
+    }
+
+    .expert-number{
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.15em;
+      color:#999;
+    }
+
+    .expert-icon{
+      width:58px;height:58px;
+      border:1px solid #ddd;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+      color:var(--red);
+      position:relative;
+    }
+
+    .expert-icon::after{
+      content:"";
+      position:absolute;
+      width:7px;height:7px;
+      right:-4px;top:-4px;
+      background:var(--red);
+    }
+
+    .expert-card h4{
+      position:relative;
+      z-index:2;
+      margin-top:30px;
+      font-size:1.35rem;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+
+    .expert-card p{
+      position:relative;
+      z-index:2;
+      margin-top:10px;
+      max-width:590px;
+      color:#666;
+      line-height:1.65;
+      font-size:.93rem;
+    }
+
+    .expert-footer{
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:25px;
+    }
+
+    .expert-tag{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-weight:700;
+      color:#999;
+    }
+
+    .expert-link{
+      color:var(--red);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    /* Decorative vertical marker */
+    .vertical-marker{
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#aaa;
     }
 
     /* Product card */
-    .product-card {
-      border: 1px solid var(--borders);
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
+    .product-card{
+      border:1px solid var(--borders);
+      background:#fff;border-radius:12px;overflow:hidden
     }
-    .product-card .media {
-      aspect-ratio: 4/3;
-      width: 100%;
-      background: #f8f8f8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    .product-card .media{
+      aspect-ratio:4/3;width:100%;background:#f8f8f8;
+      display:flex;align-items:center;justify-content:center;overflow:hidden
     }
-    .product-card img { width:100%; height:100%; object-fit: cover; }
+    .product-card img{width:100%;height:100%;object-fit:cover}
 
-    /* subtle animations */
-    .anim-ease { transition: all 220ms cubic-bezier(.22,.9,.34,1); }
+    /* Mobile nav */
+    .mobile-nav-panel{
+      position:fixed;top:0;right:0;width:25%;min-width:280px;max-width:400px;height:100vh;
+      background:#fff!important;opacity:1!important;z-index:10000;
+      transform:translateX(100%);transition:transform 260ms ease;
+      overflow-y:auto;isolation:isolate;pointer-events:none
+    }
+    .mobile-nav-panel.open{transform:translateX(0);pointer-events:auto}
+    .mobile-nav-panel>*{position:relative;z-index:1}
+    .mobile-nav-panel a{color:#111}
+    .mobile-nav-panel a:hover{color:var(--red)}
 
-    /* small utility */
-    .red-underline { height:3px; width:56px; background:var(--red); border-radius:3px; }
-
-    /* Mobile full-screen nav */
-    /* Mobile Navigation */
-.mobile-nav-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 25%;
-  min-width: 280px;
-  max-width: 400px;
-  height: 100vh;
-
-  background: #ffffff !important;
-  opacity: 1 !important;
-
-  z-index: 10000;
-
-  transform: translateX(100%);
-  transition: transform 260ms ease;
-
-  overflow-y: auto;
-  isolation: isolate;
-
-  pointer-events: none;
-}
-
-.mobile-nav-panel.open {
-  transform: translateX(0);
-  pointer-events: auto;
-}
-
-/* Keep menu contents above background */
-.mobile-nav-panel > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile menu links */
-.mobile-nav-panel a {
-  color: #111111;
-}
-
-.mobile-nav-panel a:hover {
-  color: #C8102E;
-}
-
-/* Phone size */
-@media (max-width: 767px) {
-  .mobile-nav-panel {
-    width: 75%;
-    min-width: 0;
-    max-width: none;
-  }
-}
-
-/* New section-specific tweaks (keeps design consistent) */
-#specialize .expert-card {
-  border: 1px solid rgba(0,0,0,0.06);
-  background: white;
-}
-#specialize .expert-card .icon-wrap {
-  width:48px;
-  height:48px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.04);
-}
-#specialize .expert-card h4 { font-size: 1rem; }
-#specialize .expert-card p { font-size: 0.95rem; color: var(--medium-gray); }
-
+    @media(max-width:767px){
+      .mobile-nav-panel{width:75%;min-width:0;max-width:none}
+      .logo-img{height:68px}
+      .about-photo-frame{position:relative;width:88%;height:320px;top:20px}
+      .about-accent{height:190px;width:35%}
+      .about-outline{bottom:20px;width:78%;height:120px}
+      .about-stat{width:175px;bottom:0;padding:18px}
+      .about-stat .big{font-size:34px}
+      .about-copy{padding-left:0}
+      .about-pill-grid{grid-template-columns:1fr}
+      .expertise-header{display:block}
+      .expertise-intro{margin-top:20px}
+      .expertise-grid{grid-template-columns:1fr;margin-top:35px}
+      .expertise-card:nth-child(n){grid-column:span 1;min-height:275px}
+    }
   </style>
 </head>
+
 <body class="antialiased">
 
-  <!-- HEADER / NAV -->
-  <header class="site-header fixed w-full top-0 z-50">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-4">
-          <a href="#home" class="flex items-center">
-            <img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="logo-img">
-            <span class="ml-3 text-2xl font-semibold text-[var(--dark)]">Diagno Support</span>
-          </a>
-        </div>
-
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="#home" class="text-sm font-medium text-[var(--charcoal)] hover:text-[var(--red)]">Home</a>
-          <a href="#about" class="text-sm font-medium text-[var(--charcoal)] hover:text-[var(--red)]">About</a>
-          <a href="#expertise" class="text-sm font-medium text-[var(--charcoal)] hover:text-[var(--red)]">Expertise</a>
-          <a href="#products" class="text-sm font-medium text-[var(--charcoal)] hover:text-[var(--red)]">Products</a>
-          <a href="#contact" class="text-sm font-medium text-[var(--charcoal)] hover:text-[var(--red)]">Contact</a>
-        </nav>
-
-        <div class="flex items-center gap-3">
-          <button id="contact-cta" class="hidden md:inline-flex items-center bg-[var(--red)] text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-[#b30b24] anim-ease">
-            Contact Us
-          </button>
-
-          <!-- Mobile: red hamburger -->
-          <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden hamburger-btn" title="Open menu">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile nav panel -->
-    <div id="mobile-nav" class="mobile-nav-panel md:hidden">
-      <div class="px-4 pt-6 pb-4 flex items-center justify-between border-b">
-        <a href="#home" class="flex items-center gap-3">
-          <img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="h-9">
-          <span class="font-semibold text-lg">Diagno Support</span>
+<header class="site-header fixed w-full top-0 z-50">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-4">
+        <a href="#home" class="flex items-center">
+          <img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="logo-img">
+          <span class="ml-3 text-2xl font-semibold text-[var(--dark)]">Diagno Support</span>
         </a>
-        <div class="flex items-center gap-2">
-          <a href="#contact" class="px-3 py-2 bg-[var(--red)] text-white rounded-md text-sm font-semibold">Contact</a>
-          <button id="mobile-close" class="p-2 text-[var(--charcoal)]" aria-label="Close menu">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
       </div>
 
-      <div class="px-6 py-6 space-y-4">
-        <a href="#home" class="block text-lg font-medium">Home</a>
-        <a href="#about" class="block text-lg font-medium">About</a>
-        <a href="#expertise" class="block text-lg font-medium">Expertise</a>
-        <a href="#products" class="block text-lg font-medium">Products</a>
-        <a href="#contact" class="block text-lg font-medium">Contact</a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="text-sm font-medium hover:text-[var(--red)]">Home</a>
+        <a href="#about" class="text-sm font-medium hover:text-[var(--red)]">About</a>
+        <a href="#expertise" class="text-sm font-medium hover:text-[var(--red)]">Expertise</a>
+        <a href="#products" class="text-sm font-medium hover:text-[var(--red)]">Products</a>
+        <a href="#contact" class="text-sm font-medium hover:text-[var(--red)]">Contact</a>
+      </nav>
 
-        <div class="pt-4 border-t">
-          <p class="text-sm text-[var(--medium-gray)]">Phone: 9830461502 / 9875596081</p>
-          <p class="text-sm text-[var(--medium-gray)]">Email: queriesinds@gmail.com</p>
+      <div class="flex items-center gap-3">
+        <button id="contact-cta" class="hidden md:inline-flex items-center bg-[var(--red)] text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-[#b30b24] anim-ease">Contact Us</button>
+        <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-nav" class="md:hidden hamburger-btn">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-nav" class="mobile-nav-panel md:hidden">
+    <div class="px-4 pt-6 pb-4 flex items-center justify-between border-b">
+      <a href="#home" class="flex items-center gap-3">
+        <img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="h-9">
+        <span class="font-semibold text-lg">Diagno Support</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <a href="#contact" class="px-3 py-2 bg-[var(--red)] text-white rounded-md text-sm font-semibold">Contact</a>
+        <button id="mobile-close" class="p-2" aria-label="Close menu">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="px-6 py-6 space-y-4">
+      <a href="#home" class="block text-lg font-medium">Home</a>
+      <a href="#about" class="block text-lg font-medium">About</a>
+      <a href="#expertise" class="block text-lg font-medium">Expertise</a>
+      <a href="#products" class="block text-lg font-medium">Products</a>
+      <a href="#contact" class="block text-lg font-medium">Contact</a>
+      <div class="pt-4 border-t">
+        <p class="text-sm text-[var(--medium-gray)]">Phone: 9830461502 / 9875596081</p>
+        <p class="text-sm text-[var(--medium-gray)]">Email: queriesinds@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pt-16">
+
+<!-- HERO: unchanged -->
+<section id="home" class="hero" style="background-image:url('imagesofdino/bgimg.avif');">
+  <div class="max-w-[1200px] mx-auto w-full px-4 sm:px-6">
+    <div class="hero-content py-20 lg:py-28">
+      <div class="max-w-3xl">
+        <span class="inline-block uppercase tracking-wider text-sm text-white/80 font-semibold">Professional Diagnostic Solutions</span>
+        <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          Professional Diagnostic<br class="hidden sm:block"/>Solutions That Power<br class="hidden sm:block"/>Better Healthcare
+        </h1>
+        <p class="mt-6 text-white/90 text-base sm:text-lg md:text-xl max-w-2xl">
+          Trusted diagnostics, advanced laboratory products and dedicated technical support to enable accurate, timely results for clinicians and patients.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#contact" class="inline-flex items-center bg-[var(--red)] text-white px-5 py-3 rounded-md font-semibold hover:bg-[#b30b24] anim-ease">Get In Touch</a>
+          <a href="#products" class="inline-flex items-center border border-white/30 bg-white/10 text-white px-4 py-3 rounded-md font-medium hover:bg-white/20 anim-ease">View Products</a>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main class="pt-16">
-    <!-- HERO -->
-    <section id="home" class="hero" style="background-image: url('imagesofdino/bgimg.avif');">
-      <div class="max-w-[1200px] mx-auto w-full px-4 sm:px-6">
-        <div class="hero-content py-20 lg:py-28">
-          <div class="max-w-3xl">
-            <span class="inline-block uppercase tracking-wider text-sm text-white/80 font-semibold">Professional Diagnostic Solutions</span>
-            <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-              Professional Diagnostic<br class="hidden sm:block" />Solutions That Power<br class="hidden sm:block" />Better Healthcare
-            </h1>
-            <p class="mt-6 text-white/90 text-base sm:text-lg md:text-xl max-w-2xl">
-              Trusted diagnostics, advanced laboratory products and dedicated technical support to enable accurate, timely results for clinicians and patients.
-            </p>
-
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href="#contact" class="inline-flex items-center bg-[var(--red)] text-white px-5 py-3 rounded-md font-semibold hover:bg-[#b30b24] anim-ease">Get In Touch</a>
-              <a href="#products" class="inline-flex items-center border border-white/30 bg-white/10 text-white px-4 py-3 rounded-md font-medium hover:bg-white/20 anim-ease">View Products</a>
-            </div>
-          </div>
-        </div>
+<!-- SPECIALIZE: kept functional, with stronger visual treatment -->
+<section id="specialize" class="bg-white py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b pb-8">
+      <div>
+        <span class="section-kicker">What We Specialize In</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight">Complete Pathology Laboratory Setup & Support</h2>
       </div>
-    </section>
+      <p class="max-w-xl text-[var(--medium-gray)] leading-7">
+        End-to-end pathology laboratory solutions — from planning and licensing through equipment supply, installation and ongoing technical support.
+      </p>
+    </div>
 
-    <!-- NEW SECTION: WHAT WE SPECIALIZE IN -->
-    <section id="specialize" class="bg-white">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6">
-        <div class="text-center max-w-3xl mx-auto">
-          <span class="text-[var(--red)] text-xl font-semibold uppercase">What We Specialize In ?</span>
-          <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-[var(--dark)]">Complete Pathology Laboratory Setup & Support</h2>
-          <p class="mt-3 text-[var(--medium-gray)]">
-            We provide end-to-end pathology laboratory solutions — from planning and licensing through equipment supply, installation and ongoing technical support — to help you open and run a compliant, efficient diagnostic laboratory.
-          </p>
-        </div>
-
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Complete Pathology Lab Setup</h4>
-                <p class="mt-2 text-sm">We establish fully functional pathology laboratories of all sizes—small, medium, and large—from initial planning to final handover, ensuring a smooth, coordinated, and hassle-free setup.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-2a4 4 0 014-4h10a4 4 0 014 4v2"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Floor Planning & Layout</h4>
-                <p class="mt-2 text-sm">We provide optimized 2D and 3D lab blueprints and workflow planning for efficient placement of work areas, instruments, and support facilities, while ensuring layouts are designed in accordance with applicable NABL guidelines, standards, and regulatory requirements.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v6m0 8v6M7 7h10M7 17h10"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Licensing & Regulatory Support</h4>
-                <p class="mt-2 text-sm">We assist with registrations, documentation, and regulatory compliance required to establish and operate a pathology laboratory, while helping you understand the NABL guidelines and requirements necessary for licensing and regulatory compliance.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m0-8c1.657 0 3-1.567 3-3.5S13.657 1 12 1 9 2.567 9 4.5 10.343 8 12 8z"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Instruments & Equipment</h4>
-                <p class="mt-2 text-sm">We supply a comprehensive range of laboratory instruments, analyzers, apparatus, and consumables required for efficient and reliable day-to-day pathology laboratory operations.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7v4a4 4 0 008 0V7M5 21h14"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Technicians & Skilled Staff</h4>
-                <p class="mt-2 text-sm">Provision of trained laboratory technicians and skilled personnel to operate and manage daily laboratory activities.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6M7 10V7a5 5 0 0110 0v3"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Technical & Ongoing Support</h4>
-                <p class="mt-2 text-sm">Continued technical assistance and maintenance services to keep laboratory operations running smoothly after setup.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="icon-wrap flex-shrink-0">
-                <svg class="w-6 h-6 text-[var(--red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h3l3 8 4-16 3 8h4"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">End-to-End Solution</h4>
-                <p class="mt-2 text-sm">A complete, hassle-free approach covering planning → Licensing → Infrastructure → Equipment → Installation → Training Programs → Ongoing support.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#ddd] border border-[#ddd]">
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">01 / SETUP</div>
+        <h4 class="mt-5 text-lg font-bold">Complete Pathology Lab Setup</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Fully functional pathology laboratories of all sizes, from initial planning to final handover.</p>
       </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="bg-white">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div>
-            <img src="imagesofdino/20yrsexp.jpg" alt="Diagno Support laboratory" class="w-full rounded-lg shadow-sm object-contain h-72">
-          </div>
-
-          <div>
-            <span class="text-[var(--red)] text-sm font-semibold uppercase">About Us</span>
-            <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-[var(--dark)]">Reliable Solutions. Professional Support.</h2>
-            <p class="mt-4 text-[var(--medium-gray)] leading-relaxed">
-              Diagno Support provides premium laboratory diagnostics and consumables with an unwavering commitment to quality and service. We partner with healthcare providers to deliver accurate testing, dependable instruments, and expert technical support.
-            </p>
-
-            <div class="mt-6 grid grid-cols-2 gap-4">
-              <div class="p-4 border rounded-md">
-                <div class="text-sm font-semibold text-[var(--dark)]">Quality Products</div>
-                <div class="text-sm text-[var(--medium-gray)]">Industry-grade materials and QA processes</div>
-              </div>
-              <div class="p-4 border rounded-md">
-                <div class="text-sm font-semibold text-[var(--dark)]">Technical Support</div>
-                <div class="text-sm text-[var(--medium-gray)]">Onsite & remote assistance</div>
-              </div>
-              <div class="p-4 border rounded-md">
-                <div class="text-sm font-semibold text-[var(--dark)]">Laboratory Solutions</div>
-                <div class="text-sm text-[var(--medium-gray)]">Workflow-driven product suites</div>
-              </div>
-              <div class="p-4 border rounded-md">
-                <div class="text-sm font-semibold text-[var(--dark)]">Customer Focus</div>
-                <div class="text-sm text-[var(--medium-gray)]">Fast responses, tailored offerings</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">02 / DESIGN</div>
+        <h4 class="mt-5 text-lg font-bold">Floor Planning & Layout</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Optimized 2D and 3D layouts for efficient workflow, placement and compliance requirements.</p>
       </div>
-    </section>
-
-    <!-- AREAS OF EXPERTISE -->
-    <section id="expertise" class="bg-[var(--light-gray)] py-16">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-3xl mx-auto">
-          <h3 class="text-2xl font-bold text-[var(--dark)]">Areas of Expertise</h3>
-          <p class="mt-2 text-[var(--medium-gray)]">Comprehensive diagnostic specialties for modern healthcare and research labs.</p>
-        </div>
-
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- cards: reuse content -->
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <!-- simple line icon -->
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m0-8c1.657 0 3-1.567 3-3.5S13.657 1 12 1 9 2.567 9 4.5 10.343 8 12 8z"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Biochemistry</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Supporting biochemistry laboratory operations with reliable analyzers, reagents, and solutions for routine and specialized biochemistry testing.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c1.657 0 3-1.567 3-3.5S13.657 4 12 4 9 5.567 9 7.5 10.343 11 12 11z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Immunology</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Comprehensive immune system testing including autoimmune and infectious disease markers.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21v-2a6 6 0 016-6h4a6 6 0 016 6v2"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Veterinary Lab</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Specialized diagnostic solutions for veterinary practices and animal health monitoring.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v6m0 8v6m10-10h-6M2 12H8"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Microbiology</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Solutions for microbiological testing, including culture and sensitivity, bacterial identification, staining, and microbial analysis, supported by the appropriate laboratory instruments, media, reagents, and consumables.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Haematology</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Complete blood analysis including cell counting and coagulation studies.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10M7 12h10M7 17h10"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Research Institute</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Specialized diagnostic and research support for academic institutions.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-
-          <div class="expert-card p-6 anim-ease">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-md flex items-center justify-center bg-white border">
-                <svg class="w-6 h-6 text-[var(--red)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10M7 12h10M7 17h10"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold text-[var(--dark)]">Blood Bank</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Typing, crossmatching and donor screening solutions for safe transfusion services.</p>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-end">
-              <a href="#" class="text-[var(--red)] font-medium text-sm">Explore →</a>
-            </div>
-          </div>
-        </div>
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">03 / COMPLIANCE</div>
+        <h4 class="mt-5 text-lg font-bold">Licensing & Regulatory Support</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Assistance with registrations, documentation and understanding applicable NABL requirements.</p>
       </div>
-    </section>
-
-    <!-- PRODUCTS -->
-    <section id="products" class="bg-white py-16">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-2xl font-bold text-[var(--dark)]">Our Products</h3>
-            <p class="mt-2 text-[var(--medium-gray)] max-w-xl">A curated catalogue of laboratory consumables and equipment. Browse categories and view product details.</p>
-          </div>
-
-          <div class="hidden sm:flex items-center gap-2">
-            <button data-cat="consumables" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border border-[var(--borders)] bg-white hover:bg-[var(--light-gray)]">Consumables</button>
-            <button data-cat="kits" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border border-[var(--borders)] bg-white hover:bg-[var(--light-gray)]">Kits</button>
-            <button data-cat="chemicals" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border border-[var(--borders)] bg-white hover:bg-[var(--light-gray)]">Chemicals & Reagents</button>
-            <button data-cat="apparatus" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border border-[var(--borders)] bg-white hover:bg-[var(--light-gray)]">Apparatus</button>
-            <button data-cat="instruments" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border border-[var(--borders)] bg-white hover:bg-[var(--light-gray)]">Instruments</button>
-          </div>
-        </div>
-
-        <!-- Category panels: Mobile select -->
-        <div class="mt-6 sm:hidden">
-          <select id="mobile-cat" class="w-full border rounded-md px-3 py-2">
-            <option value="consumables">Consumables</option>
-            <option value="kits">Kits</option>
-            <option value="chemicals">Chemicals & Reagents</option>
-            <option value="apparatus">Apparatus</option>
-            <option value="instruments">Instruments</option>
-          </select>
-        </div>
-
-        <!-- Consumables grid -->
-        <div id="consumables" class="category-panel mt-8">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Test Tubes -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/40205.jpg" alt="Test Tubes - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Test Tubes</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Standard and specialized test tubes for clinical and research use.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Micro Tips -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/tips.jpg" alt="Micro Tips - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Micro Tips</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Precision pipette tips with low-retention options.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Petri Dishes -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/petridish.jpeg" alt="Petri Dishes - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Petri Dishes</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Sterile Petri dishes suitable for culture and analysis.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Beakers -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/beakers.jpg" alt="Beakers - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Beakers</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">High-quality borosilicate beakers for lab workflows.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Microscopic Slides -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/slides.jpg" alt="Microscopic Slides - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Microscopic Slides</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Clean glass slides for histology and microscopy.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Blood collection Vials -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/blood.jpg" alt="Blood Collection Vials - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Blood Collection Vials</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Secure, sterile vials for blood collection and transport.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Consumables</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kits -->
-        <div id="kits" class="category-panel mt-8 hidden">
-          <div class="p-6 border rounded-md">
-            <div class="flex items-start gap-4">
-              <div class="flex-1">
-                <h4 class="text-xl font-semibold text-[var(--dark)]">Kits</h4>
-                <p class="mt-2 text-[var(--medium-gray)]">Diagnostic and laboratory testing kits designed for consistent, reliable performance.</p>
-                <p class="mt-4 text-sm text-[var(--medium-gray)]">Coming soon — request notifications or contact our sales team for pre-release options.</p>
-              </div>
-              <div class="w-48 hidden sm:block">
-                <img src="imagesofdino/40205.jpg" alt="Kits preview" class="rounded-md object-cover w-full h-32">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Chemicals -->
-        <div id="chemicals" class="category-panel mt-8 hidden">
-          <div class="p-6 border rounded-md">
-            <div class="flex items-start gap-4">
-              <div class="flex-1">
-                <h4 class="text-xl font-semibold text-[var(--dark)]">Chemicals & Reagents</h4>
-                <p class="mt-2 text-[var(--medium-gray)]">High-purity reagents and chemicals for diagnostic workflows and assays.</p>
-                <p class="mt-4 text-sm text-[var(--medium-gray)]">Coming soon — contact us to discuss supplier and bulk options.</p>
-              </div>
-              <div class="w-48 hidden sm:block">
-                <img src="imagesofdino/beakers.jpg" alt="Chemicals preview" class="rounded-md object-cover w-full h-32">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- APPARATUS: grid of apparatus product cards (images placeholders under imagesofdino/) -->
-        <div id="apparatus" class="category-panel mt-8 hidden">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Hot Air Oven -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/hot-air-oven.jpg" alt="Hot Air Oven - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Hot Air Oven</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Laboratory hot air ovens for drying, sterilization and temperature-controlled processes.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Water Bath -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/water-bath.jpg" alt="Water Bath - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Water Bath</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Precision water baths for sample incubation and controlled temperature applications.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Centrifuge -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/centrifuge.jpg" alt="Centrifuge - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Centrifuge</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">High-performance centrifuges for sample separation and processing.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Muffle Furnace -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/muffle-furnace.jpg" alt="Muffle Furnace - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Muffle Furnace</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">High-temperature muffle furnaces for ashing, heat treatments and material testing.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Coating Oven -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/coating-oven.jpg" alt="Coating Oven - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Coating Oven</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Controlled ovens for coating, curing and process drying applications.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Ultrasonic Cleaner -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/ultrasonic-cleaner.jpg" alt="Ultrasonic Cleaner - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Ultrasonic Cleaner</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Precision ultrasonic cleaning systems for instruments and glassware.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Kjeldahl Apparatus -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/kjeldahl.jpg" alt="Kjeldahl Apparatus - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Kjeldahl Apparatus</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Apparatus for accurate nitrogen/protein estimation via Kjeldahl digestion and distillation.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Melting Point Apparatus -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/melting-point.jpg" alt="Melting Point Apparatus - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Melting Point Apparatus</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Precision melting point apparatus for material characterization and QC.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Stability Chamber -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/stability-chamber.jpg" alt="Stability Chamber - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Stability Chamber</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Temperature and humidity-controlled chambers for product stability testing.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Disintegration Test Apparatus -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/disintegration.jpg" alt="Disintegration Test Apparatus - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Disintegration Test Apparatus</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Apparatus for disintegration testing of pharmaceutical dosage forms.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Magnetic Stirrer with Hot Plate -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/magnetic-stirrer.jpg" alt="Magnetic Stirrer with Hot Plate - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Magnetic Stirrer with Hot Plate</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Reliable magnetic stirrers with heating for sample preparation and mixing.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Apparatus</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INSTRUMENTS: grid of instrument product cards (images placeholders under imagesofdino/) -->
-        <div id="instruments" class="category-panel mt-8 hidden">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- HPLC System -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/hplc.jpg" alt="HPLC System - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">HPLC System</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">High-performance liquid chromatography systems for analytical separation and quantification.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Hematology Analyzer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/hematology-analyzer.jpg" alt="Hematology Analyzer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Hematology Analyzer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Automated hematology analyzers for complete blood counts and differential analysis.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Electronic Analytical Balance -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/analytical-balance.jpg" alt="Electronic Analytical Balance - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Electronic Analytical Balance</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Precision analytical balances for accurate weighing and formulation tasks.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- GC System -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/gc.jpg" alt="GC System - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">GC System</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Gas chromatography systems for volatile and semi-volatile compound analysis.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- FTIR Spectrometer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/ftir.jpg" alt="FTIR Spectrometer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">FTIR Spectrometer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Fourier-transform infrared spectrometers for molecular fingerprinting and material ID.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- pH Meter -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/ph-meter.jpg" alt="pH Meter - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">pH Meter</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Accurate pH measurement instruments for routine laboratory testing and QC.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Flame Photometer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/flame-photometer.jpg" alt="Flame Photometer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Flame Photometer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Instrumentation for rapid elemental analysis of sodium, potassium and lithium.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Photometer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/photometer.jpg" alt="Photometer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Photometer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Clinical photometers for absorbance-based assays and routine chemistry testing.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- UV-VIS Spectrophotometer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/uv-vis.jpg" alt="UV-VIS Spectrophotometer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">UV-VIS Spectrophotometer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">UV-Visible spectrophotometers for quantitative analysis and assay development.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Microscope -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/microscope.jpg" alt="Microscope - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Microscope</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Clinical and research microscopes for histology, cytology and routine lab examinations.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Biochemistry Analyzer -->
-            <div class="product-card anim-ease">
-              <div class="media">
-                <img src="imagesofdino/biochemistry-analyzer.jpg" alt="Biochemistry Analyzer - Diagno Support">
-              </div>
-              <div class="p-4">
-                <h4 class="font-semibold text-[var(--dark)]">Biochemistry Analyzer</h4>
-                <p class="mt-2 text-sm text-[var(--medium-gray)]">Automated biochemistry analyzers for routine clinical chemistry testing and panels.</p>
-                <div class="mt-4 flex items-center justify-between">
-                  <a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a>
-                  <span class="text-sm text-[var(--medium-gray)]">Instruments</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Notify / contact -->
-        <div class="mt-8 text-center">
-          <button id="notify-btn" class="px-6 py-3 bg-[var(--red)] text-white rounded-md font-semibold hover:bg-[#b30b24]">Notify Me When Available</button>
-        </div>
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">04 / EQUIPMENT</div>
+        <h4 class="mt-5 text-lg font-bold">Instruments & Equipment</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Laboratory instruments, analyzers, apparatus and consumables for daily pathology operations.</p>
       </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="bg-[var(--charcoal)] text-white py-16">
-      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          <div>
-            <h3 class="text-2xl font-bold">Get In Touch</h3>
-            <p class="mt-2 text-[var(--light-gray)]">Ready to transform your diagnostic capabilities? Contact our team for product information, pricing and technical support.</p>
-
-            <div class="mt-6 space-y-4 text-[var(--light-gray)]">
-              <div class="flex items-start gap-3">
-                <svg class="w-6 h-6 text-[var(--red)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-2M7 8H5a2 2 0 00-2 2v8a2 2 0 002 2h2M12 3v6"/></svg>
-                <div>
-                  <div class="font-semibold">Address</div>
-                  <div class="text-sm">8, Haralal Mitra Street, Kolkata - 700003</div>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <svg class="w-6 h-6 text-[var(--red)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5v4l8 4 8-4V5M3 7l8 4 8-4"/></svg>
-                <div>
-                  <div class="font-semibold">Phone</div>
-                  <div class="text-sm">9830461502 / 9875596081</div>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <svg class="w-6 h-6 text-[var(--red)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"/></svg>
-                <div>
-                  <div class="font-semibold">Email</div>
-                  <div class="text-sm">queriesinds@gmail.com</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="bg-white rounded-md p-6">
-              <h4 class="text-[var(--charcoal)] font-semibold">Send us a message</h4>
-              <form id="contact-form" class="mt-4 space-y-4">
-                <div>
-                  <label class="sr-only" for="name">Your Name</label>
-                  <input id="name" name="name" required type="text" placeholder="Your name" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)] focus:outline-none focus:ring-2 focus:ring-[var(--red)]">
-                </div>
-                <div>
-                  <label class="sr-only" for="email">Your Email</label>
-                  <input id="email" name="email" required type="email" placeholder="Email address" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)] focus:outline-none focus:ring-2 focus:ring-[var(--red)]">
-                </div>
-                <div>
-                  <label class="sr-only" for="message">Message</label>
-                  <textarea id="message" name="message" rows="5" placeholder="Your message" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)] focus:outline-none focus:ring-2 focus:ring-[var(--red)]"></textarea>
-                </div>
-                <div>
-                  <button type="submit" class="w-full bg-[var(--red)] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#b30b24]">Send Message</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">05 / PEOPLE</div>
+        <h4 class="mt-5 text-lg font-bold">Technicians & Skilled Staff</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Provision of trained laboratory technicians and skilled personnel for laboratory activities.</p>
       </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-[var(--charcoal)] text-white py-8">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <div class="flex items-center gap-3">
-            <img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="h-9">
-            <span class="font-semibold">Diagno Support</span>
-          </div>
-          <p class="mt-3 text-sm text-[var(--light-gray)]">Professional diagnostic solutions, consumables, and laboratory support for clinical and research settings.</p>
-        </div>
-
-        <div>
-          <h5 class="font-semibold">Navigation</h5>
-          <ul class="mt-3 space-y-2 text-sm text-[var(--light-gray)]">
-            <li><a href="#about" class="hover:text-white">About</a></li>
-            <li><a href="#expertise" class="hover:text-white">Expertise</a></li>
-            <li><a href="#products" class="hover:text-white">Products</a></li>
-            <li><a href="#contact" class="hover:text-white">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 class="font-semibold">Contact</h5>
-          <p class="mt-3 text-sm text-[var(--light-gray)]">8, Haralal Mitra Street, Kolkata - 700003</p>
-          <p class="text-sm text-[var(--light-gray)] mt-1">Phone: 9830461502 / 9875596081</p>
-          <p class="text-sm text-[var(--light-gray)] mt-1">Email: queriesinds@gmail.com</p>
-        </div>
-      </div>
-
-      <div class="mt-6 border-t border-[#2a2a2a] pt-4 text-center text-sm text-[var(--light-gray)]">
-        &copy; 2026 Diagno Support. All rights reserved.
+      <div class="bg-white p-7 min-h-[220px]">
+        <div class="text-[var(--red)] text-xs font-extrabold tracking-[.18em]">06 / SUPPORT</div>
+        <h4 class="mt-5 text-lg font-bold">Technical & Ongoing Support</h4>
+        <p class="mt-3 text-sm leading-6 text-[var(--medium-gray)]">Continued technical assistance and maintenance to keep laboratory operations running smoothly.</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- JS: menu toggle, smooth scrolling, category tabs, form handler -->
-  <script>
-    // Mobile menu
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileClose = document.getElementById('mobile-close');
-    mobileBtn.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      mobileBtn.setAttribute('aria-expanded', String(open));
-    });
-    mobileClose.addEventListener('click', () => {
+<!-- ABOUT — NEW DESIGN -->
+<section id="about" class="about-section py-20 lg:py-28">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <div class="about-visual">
+        <div class="about-accent"></div>
+        <div class="about-photo-frame">
+          <img src="imagesofdino/20yrsexp.jpg" alt="Diagno Support laboratory">
+        </div>
+        <div class="about-outline"></div>
+        <div class="about-stat">
+          <span class="big">20+</span>
+          <span class="mt-2 block text-xs uppercase tracking-[.16em] text-white/65">Years of experience</span>
+          <div class="mt-5 h-px bg-white/20"></div>
+          <span class="mt-4 block text-xs leading-5 text-white/70">Supporting laboratories with products, infrastructure and technical expertise.</span>
+        </div>
+      </div>
+
+      <div class="about-copy">
+        <span class="section-kicker">About Diagno Support</span>
+        <h2 class="about-title mt-5">More than products.<br><span class="text-[var(--red)]">A complete lab partner.</span></h2>
+
+        <p class="about-lead mt-7">
+          Diagno Support provides premium laboratory diagnostics and consumables with an unwavering commitment to quality and service. We partner with healthcare providers to deliver accurate testing, dependable instruments and expert technical support.
+        </p>
+
+        <div class="mt-9 about-pill-grid">
+          <div class="about-pill">
+            <span class="num">01 / QUALITY</span>
+            <h3 class="mt-3 font-bold">Quality Products</h3>
+            <p class="mt-2 text-sm text-[#666] leading-5">Industry-grade materials and dependable QA processes.</p>
+          </div>
+          <div class="about-pill">
+            <span class="num">02 / SUPPORT</span>
+            <h3 class="mt-3 font-bold">Technical Support</h3>
+            <p class="mt-2 text-sm text-[#666] leading-5">Onsite and remote assistance when it matters.</p>
+          </div>
+          <div class="about-pill">
+            <span class="num">03 / SOLUTIONS</span>
+            <h3 class="mt-3 font-bold">Laboratory Solutions</h3>
+            <p class="mt-2 text-sm text-[#666] leading-5">Workflow-driven products for clinical and research settings.</p>
+          </div>
+          <div class="about-pill">
+            <span class="num">04 / SERVICE</span>
+            <h3 class="mt-3 font-bold">Customer Focus</h3>
+            <p class="mt-2 text-sm text-[#666] leading-5">Fast responses and solutions tailored to your needs.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AREAS OF EXPERTISE — NEW DESIGN -->
+<section id="expertise" class="expertise-section py-20 lg:py-28">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+
+    <div class="expertise-header">
+      <div>
+        <span class="section-kicker">Our Capabilities</span>
+        <h2 class="expertise-title mt-5">Areas of<br><span class="text-[var(--red)]">Expertise.</span></h2>
+      </div>
+      <p class="expertise-intro">
+        Comprehensive diagnostic specialties supported by the right instruments, consumables, reagents and technical expertise for modern laboratories.
+      </p>
+    </div>
+
+    <div class="expertise-grid">
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">01 / BIOCHEMISTRY</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M8 3v6l-3 7a3 3 0 003 4h8a3 3 0 003-4l-3-7V3M7 3h10M7 13h10"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Biochemistry</h4>
+          <p>Supporting biochemistry laboratory operations with reliable analyzers, reagents and solutions for routine and specialized biochemistry testing.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Clinical Diagnostics</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">02 / IMMUNOLOGY</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 21a7 7 0 0114 0M4 4l2 2m14-2l-2 2"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Immunology</h4>
+          <p>Comprehensive immune-system testing including autoimmune and infectious-disease markers.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Immune Testing</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">03 / VETERINARY</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M7 8c-1.7 0-3-1.4-3-3s1.3-3 3-3 3 1.4 3 3M17 8c1.7 0 3-1.4 3-3s-1.3-3-3-3-3 1.4-3 3M12 11c-3 0-6 2.4-6 5.5C6 19 8.4 21 12 21s6-2 6-4.5c0-3.1-3-5.5-6-5.5z"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Veterinary Lab</h4>
+          <p>Specialized diagnostic solutions for veterinary practices and animal-health monitoring.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Animal Health</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">04 / MICROBIOLOGY</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"/><circle cx="5" cy="7" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><path stroke-linecap="round" d="M7 8l3 2m7-2l-3 2m-5 3l-1 3m4-3l1 3"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Microbiology</h4>
+          <p>Solutions for microbiological testing, including culture and sensitivity, bacterial identification, staining and microbial analysis, supported by appropriate laboratory instruments, media, reagents and consumables.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Culture & Analysis</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">05 / HAEMATOLOGY</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M12 3s6 6.4 6 11a6 6 0 01-12 0c0-4.6 6-11 6-11z"/><path stroke-linecap="round" d="M9 15c.4 1.4 1.4 2.3 3 2.6"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Haematology</h4>
+          <p>Complete blood analysis including cell counting and coagulation studies.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Blood Analysis</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">06 / BLOOD BANK</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M12 3s6 6.4 6 11a6 6 0 01-12 0c0-4.6 6-11 6-11z"/><path stroke-linecap="round" d="M9 14h6M12 11v6"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Blood Bank</h4>
+          <p>Typing, crossmatching and donor-screening solutions for safe transfusion services.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Transfusion Services</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+      <article class="expertise-card anim-ease">
+        <div>
+          <div class="expert-top">
+            <span class="expert-number">07 / RESEARCH</span>
+            <div class="expert-icon">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M9 3v6l-4 8a3 3 0 003 4h8a3 3 0 003-4l-4-8V3M7 3h10M7 14h10"/>
+              </svg>
+            </div>
+          </div>
+          <h4>Research Institute</h4>
+          <p>Specialized diagnostic and research support for academic institutions and research laboratories.</p>
+        </div>
+        <div class="expert-footer">
+          <span class="expert-tag">Research Support</span>
+          <a href="#products" class="expert-link">Explore →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="bg-white py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h3 class="text-2xl font-bold">Our Products</h3>
+        <p class="mt-2 text-[var(--medium-gray)] max-w-xl">A curated catalogue of laboratory consumables and equipment. Browse categories and view product details.</p>
+      </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <button data-cat="consumables" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border">Consumables</button>
+        <button data-cat="kits" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border">Kits</button>
+        <button data-cat="chemicals" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border">Chemicals & Reagents</button>
+        <button data-cat="apparatus" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border">Apparatus</button>
+        <button data-cat="instruments" class="cat-btn px-4 py-2 rounded-md text-sm font-medium border">Instruments</button>
+      </div>
+    </div>
+
+    <div class="mt-6 sm:hidden">
+      <select id="mobile-cat" class="w-full border rounded-md px-3 py-2">
+        <option value="consumables">Consumables</option>
+        <option value="kits">Kits</option>
+        <option value="chemicals">Chemicals & Reagents</option>
+        <option value="apparatus">Apparatus</option>
+        <option value="instruments">Instruments</option>
+      </select>
+    </div>
+
+    <div id="consumables" class="category-panel mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/40205.jpg" alt="Test Tubes"></div><div class="p-4"><h4 class="font-semibold">Test Tubes</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Standard and specialized test tubes for clinical and research use.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/tips.jpg" alt="Micro Tips"></div><div class="p-4"><h4 class="font-semibold">Micro Tips</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Precision pipette tips with low-retention options.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/petridish.jpeg" alt="Petri Dishes"></div><div class="p-4"><h4 class="font-semibold">Petri Dishes</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Sterile Petri dishes suitable for culture and analysis.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/beakers.jpg" alt="Beakers"></div><div class="p-4"><h4 class="font-semibold">Beakers</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">High-quality borosilicate beakers for lab workflows.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/slides.jpg" alt="Microscopic Slides"></div><div class="p-4"><h4 class="font-semibold">Microscopic Slides</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Clean glass slides for histology and microscopy.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+        <div class="product-card anim-ease"><div class="media"><img src="imagesofdino/blood.jpg" alt="Blood Collection Vials"></div><div class="p-4"><h4 class="font-semibold">Blood Collection Vials</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Secure, sterile vials for blood collection and transport.</p><div class="mt-4 flex justify-between"><a href="#" class="text-[var(--red)] font-medium text-sm">View Product →</a><span class="text-sm text-[var(--medium-gray)]">Consumables</span></div></div></div>
+      </div>
+    </div>
+
+    <div id="kits" class="category-panel mt-8 hidden"><div class="p-6 border rounded-md"><h4 class="text-xl font-semibold">Kits</h4><p class="mt-2 text-[var(--medium-gray)]">Diagnostic and laboratory testing kits designed for consistent, reliable performance.</p><p class="mt-4 text-sm text-[var(--medium-gray)]">Coming soon — contact our sales team for options.</p></div></div>
+    <div id="chemicals" class="category-panel mt-8 hidden"><div class="p-6 border rounded-md"><h4 class="text-xl font-semibold">Chemicals & Reagents</h4><p class="mt-2 text-[var(--medium-gray)]">High-purity reagents and chemicals for diagnostic workflows and assays.</p><p class="mt-4 text-sm text-[var(--medium-gray)]">Coming soon — contact us to discuss supplier and bulk options.</p></div></div>
+
+    <div id="apparatus" class="category-panel mt-8 hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="product-card"><div class="media"><img src="imagesofdino/hot-air-oven.jpg" alt="Hot Air Oven"></div><div class="p-4"><h4 class="font-semibold">Hot Air Oven</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Drying, sterilization and temperature-controlled laboratory processes.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/water-bath.jpg" alt="Water Bath"></div><div class="p-4"><h4 class="font-semibold">Water Bath</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Precision incubation and controlled-temperature applications.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/centrifuge.jpg" alt="Centrifuge"></div><div class="p-4"><h4 class="font-semibold">Centrifuge</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">High-performance sample separation and processing.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/muffle-furnace.jpg" alt="Muffle Furnace"></div><div class="p-4"><h4 class="font-semibold">Muffle Furnace</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">High-temperature ashing and heat-treatment applications.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/coating-oven.jpg" alt="Coating Oven"></div><div class="p-4"><h4 class="font-semibold">Coating Oven</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Controlled coating, curing and process-drying applications.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/ultrasonic-cleaner.jpg" alt="Ultrasonic Cleaner"></div><div class="p-4"><h4 class="font-semibold">Ultrasonic Cleaner</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Precision cleaning systems for instruments and glassware.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/kjeldahl.jpg" alt="Kjeldahl Apparatus"></div><div class="p-4"><h4 class="font-semibold">Kjeldahl Apparatus</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Nitrogen/protein estimation via Kjeldahl digestion and distillation.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/melting-point.jpg" alt="Melting Point Apparatus"></div><div class="p-4"><h4 class="font-semibold">Melting Point Apparatus</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Precision material characterization and QC.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/stability-chamber.jpg" alt="Stability Chamber"></div><div class="p-4"><h4 class="font-semibold">Stability Chamber</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Temperature and humidity-controlled stability testing.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/disintegration.jpg" alt="Disintegration Test Apparatus"></div><div class="p-4"><h4 class="font-semibold">Disintegration Test Apparatus</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Disintegration testing of pharmaceutical dosage forms.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/magnetic-stirrer.jpg" alt="Magnetic Stirrer with Hot Plate"></div><div class="p-4"><h4 class="font-semibold">Magnetic Stirrer with Hot Plate</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Heating and mixing for sample preparation.</p></div></div>
+      </div>
+    </div>
+
+    <div id="instruments" class="category-panel mt-8 hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="product-card"><div class="media"><img src="imagesofdino/hplc.jpg" alt="HPLC System"></div><div class="p-4"><h4 class="font-semibold">HPLC System</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">High-performance liquid chromatography for analytical separation and quantification.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/hematology-analyzer.jpg" alt="Hematology Analyzer"></div><div class="p-4"><h4 class="font-semibold">Hematology Analyzer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Automated CBC and differential analysis.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/analytical-balance.jpg" alt="Electronic Analytical Balance"></div><div class="p-4"><h4 class="font-semibold">Electronic Analytical Balance</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Precision weighing and formulation tasks.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/gc.jpg" alt="GC System"></div><div class="p-4"><h4 class="font-semibold">GC System</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Gas chromatography for volatile and semi-volatile compound analysis.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/ftir.jpg" alt="FTIR Spectrometer"></div><div class="p-4"><h4 class="font-semibold">FTIR Spectrometer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Molecular fingerprinting and material identification.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/ph-meter.jpg" alt="pH Meter"></div><div class="p-4"><h4 class="font-semibold">pH Meter</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Accurate pH measurement for routine testing and QC.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/flame-photometer.jpg" alt="Flame Photometer"></div><div class="p-4"><h4 class="font-semibold">Flame Photometer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Rapid elemental analysis of sodium, potassium and lithium.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/photometer.jpg" alt="Photometer"></div><div class="p-4"><h4 class="font-semibold">Photometer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Absorbance-based assays and routine chemistry testing.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/uv-vis.jpg" alt="UV-VIS Spectrophotometer"></div><div class="p-4"><h4 class="font-semibold">UV-VIS Spectrophotometer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Quantitative analysis and assay development.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/microscope.jpg" alt="Microscope"></div><div class="p-4"><h4 class="font-semibold">Microscope</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Clinical and research microscopy for routine examinations.</p></div></div>
+        <div class="product-card"><div class="media"><img src="imagesofdino/biochemistry-analyzer.jpg" alt="Biochemistry Analyzer"></div><div class="p-4"><h4 class="font-semibold">Biochemistry Analyzer</h4><p class="mt-2 text-sm text-[var(--medium-gray)]">Automated routine clinical biochemistry testing.</p></div></div>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <button id="notify-btn" class="px-6 py-3 bg-[var(--red)] text-white rounded-md font-semibold hover:bg-[#b30b24]">Notify Me When Available</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-[var(--charcoal)] text-white py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h3 class="text-2xl font-bold">Get In Touch</h3>
+        <p class="mt-2 text-[var(--light-gray)]">Ready to transform your diagnostic capabilities? Contact our team for product information, pricing and technical support.</p>
+        <div class="mt-6 space-y-4 text-[var(--light-gray)]">
+          <div><div class="font-semibold">Address</div><div class="text-sm">8, Haralal Mitra Street, Kolkata - 700003</div></div>
+          <div><div class="font-semibold">Phone</div><div class="text-sm">9830461502 / 9875596081</div></div>
+          <div><div class="font-semibold">Email</div><div class="text-sm">queriesinds@gmail.com</div></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6">
+        <h4 class="text-[var(--charcoal)] font-semibold">Send us a message</h4>
+        <form id="contact-form" class="mt-4 space-y-4">
+          <input id="name" name="name" required type="text" placeholder="Your name" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)]">
+          <input id="email" name="email" required type="email" placeholder="Email address" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)]">
+          <textarea id="message" name="message" rows="5" placeholder="Your message" class="w-full border rounded-md px-3 py-2 text-[var(--charcoal)]"></textarea>
+          <button type="submit" class="w-full bg-[var(--red)] text-white px-4 py-2 rounded-md font-semibold">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-[var(--charcoal)] text-white py-8">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <div class="flex items-center gap-3"><img src="imagesofdino/2uplogo.png" alt="Diagno Support logo" class="h-9"><span class="font-semibold">Diagno Support</span></div>
+        <p class="mt-3 text-sm text-[var(--light-gray)]">Professional diagnostic solutions, consumables, and laboratory support for clinical and research settings.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold">Navigation</h5>
+        <ul class="mt-3 space-y-2 text-sm text-[var(--light-gray)]">
+          <li><a href="#about">About</a></li><li><a href="#expertise">Expertise</a></li><li><a href="#products">Products</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold">Contact</h5>
+        <p class="mt-3 text-sm text-[var(--light-gray)]">8, Haralal Mitra Street, Kolkata - 700003</p>
+        <p class="text-sm text-[var(--light-gray)] mt-1">Phone: 9830461502 / 9875596081</p>
+        <p class="text-sm text-[var(--light-gray)] mt-1">Email: queriesinds@gmail.com</p>
+      </div>
+    </div>
+    <div class="mt-6 border-t border-[#2a2a2a] pt-4 text-center text-sm text-[var(--light-gray)]">&copy; 2026 Diagno Support. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const mobileBtn=document.getElementById('mobile-menu-btn');
+  const mobileNav=document.getElementById('mobile-nav');
+  const mobileClose=document.getElementById('mobile-close');
+
+  mobileBtn?.addEventListener('click',()=>{
+    const open=mobileNav.classList.toggle('open');
+    mobileBtn.setAttribute('aria-expanded',String(open));
+  });
+  mobileClose?.addEventListener('click',()=>{
+    mobileNav.classList.remove('open');
+    mobileBtn.setAttribute('aria-expanded','false');
+  });
+
+  mobileNav?.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',()=>{
       mobileNav.classList.remove('open');
       mobileBtn.setAttribute('aria-expanded','false');
     });
+  });
 
-    // Close mobile nav when clicking an anchor
-    mobileNav.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        mobileBtn.setAttribute('aria-expanded','false');
-      });
-    });
-
-    // Smooth scroll for in-page links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const hash = this.getAttribute('href');
-        if (!hash || hash === '#') return;
-        const target = document.querySelector(hash);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Contact CTA button scroll
-    document.getElementById('contact-cta')?.addEventListener('click', () => {
-      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // Category switching
-    const catButtons = Array.from(document.querySelectorAll('.cat-btn'));
-    const panels = Array.from(document.querySelectorAll('.category-panel'));
-    const mobileSelect = document.getElementById('mobile-cat');
-
-    function showCategory(id) {
-      panels.forEach(p => p.id === id ? p.classList.remove('hidden') : p.classList.add('hidden'));
-      catButtons.forEach(b => b.dataset.cat === id ? b.classList.add('bg-[var(--red)]','text-white') : b.classList.remove('bg-[var(--red)]','text-white'));
-    }
-
-    // init default
-    showCategory('consumables');
-
-    catButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        showCategory(btn.dataset.cat);
-        window.scrollTo({ top: document.querySelector('#products').offsetTop - 80, behavior: 'smooth' });
-      });
-    });
-
-    if (mobileSelect) {
-      mobileSelect.addEventListener('change', (e) => {
-        showCategory(e.target.value);
-      });
-    }
-
-    // Notify button
-    document.getElementById('notify-btn')?.addEventListener('click', () => {
-      alert('Thank you — we will notify you when new products are available.');
-    });
-
-    // Contact form handler (no backend here) - prevents console errors and resets
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+    anchor.addEventListener('click',function(e){
+      const hash=this.getAttribute('href');
+      if(!hash||hash==='#')return;
+      const target=document.querySelector(hash);
+      if(target){
         e.preventDefault();
-        // Basic validation
-        const name = this.name.value.trim();
-        const email = this.email.value.trim();
-        if (!name || !email) {
-          alert('Please provide your name and email.');
-          return;
-        }
-        // Simulate successful submit
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
-      });
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  document.getElementById('contact-cta')?.addEventListener('click',()=>{
+    document.querySelector('#contact')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  const catButtons=[...document.querySelectorAll('.cat-btn')];
+  const panels=[...document.querySelectorAll('.category-panel')];
+  const mobileSelect=document.getElementById('mobile-cat');
+
+  function showCategory(id){
+    panels.forEach(p=>p.id===id?p.classList.remove('hidden'):p.classList.add('hidden'));
+    catButtons.forEach(b=>{
+      if(b.dataset.cat===id)b.classList.add('bg-[var(--red)]','text-white');
+      else b.classList.remove('bg-[var(--red)]','text-white');
+    });
+    if(mobileSelect)mobileSelect.value=id;
+  }
+
+  showCategory('consumables');
+
+  catButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      showCategory(btn.dataset.cat);
+      document.querySelector('#products')?.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  mobileSelect?.addEventListener('change',e=>showCategory(e.target.value));
+
+  document.getElementById('notify-btn')?.addEventListener('click',()=>{
+    alert('Thank you — we will notify you when new products are available.');
+  });
+
+  document.getElementById('contact-form')?.addEventListener('submit',function(e){
+    e.preventDefault();
+    const name=this.name.value.trim();
+    const email=this.email.value.trim();
+    if(!name||!email){
+      alert('Please provide your name and email.');
+      return;
     }
-  </script>
+    alert('Thank you for your message! We will get back to you soon.');
+    this.reset();
+  });
+</script>
+
 </body>
 </html>
